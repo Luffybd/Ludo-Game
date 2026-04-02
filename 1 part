@@ -1,0 +1,30 @@
+import random
+
+def roll_dice():
+    return random.randint(1, 6)
+
+def main():
+    players = ["Player 1", "Player 2", "Player 3", "Player 4"]
+    positions = [0, 0, 0, 0]
+    winning_score = 50
+
+    print("Ludo Game Started!")
+    
+    while True:
+        for i in range(len(players)):
+            input(f"\n{players[i]}'s turn. Press Enter to roll...")
+            roll = roll_dice()
+            print(f"Rolled a {roll}!")
+            
+            if positions[i] + roll <= winning_score:
+                positions[i] += roll
+                print(f"Current Position: {positions[i]}")
+            else:
+                print(f"Roll too high! Still at: {positions[i]}")
+            
+            if positions[i] == winning_score:
+                print(f"\n🎉 {players[i]} wins the game!")
+                return
+
+if __name__ == "__main__":
+    main()
