@@ -1,1 +1,58 @@
-#include int main () 
+#include <iostream>
+#include <iomanip>
+#include <conio.h>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int rollDice() {
+    return (rand() % 6) + 1;
+}
+
+int main() {
+    int scores[4] = {0, 0, 0, 0};
+    int winner = -1;
+    srand(time(0));
+
+    while (winner == -1) {
+        system("cls");
+        cout << "--- SIMPLE LUDO RACE ---" << endl;
+        for (int i = 0; i < 4; i++) {
+            cout << "Player " << i + 1 << ": " << scores[i] << " points" << endl;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            cout << "\nPlayer " << i + 1 << "'s turn. Press any key to roll...";
+            _getch();
+
+            int dice = rollDice();
+            cout << "\nYou rolled a " << dice << "!";
+
+            if (dice == 6) {
+                cout << "\nLucky 6! Roll again: ";
+                _getch();
+                int bonus = rollDice();
+                cout << bonus;
+                if (bonus == 6) {
+                    cout << "\nTwo 6s! Turn ends.";
+                } else {
+                    scores[i] += (dice + bonus);
+                }
+            } else if (scores[i] + dice <= 50) {
+                scores[i] += dice;
+            }
+
+            if (scores[i] == 50) {
+                winner = i + 1;
+                break;
+            }
+        }
+    }
+
+    cout << "\n\n***********************" << endl;
+    cout << "PLAYER " << winner << " WINS THE GAME!" << endl;
+    cout << "***********************" << endl;
+
+    return 0;
+}
