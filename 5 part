@@ -1,0 +1,45 @@
+#ludo-board {
+  display: grid;
+  grid-template-columns: repeat(15, 30px);
+  grid-template-rows: repeat(15, 30px);
+  gap: 2px;
+}
+.home { width: 180px; height: 180px; }
+.red { background-color: #ff4d4d; }
+.green { background-color: #4CAF50; }
+
+const gameState = {
+  currentPlayer: 0,
+  diceValue: 0,
+  positions: [0, 0, 0, 0] // Track positions of 4 pieces
+};
+
+document.getElementById('dice-btn').addEventListener('click', () => {
+  // Roll a 6-sided die
+  gameState.diceValue = Math.floor(Math.random() * 6) + 1;
+  document.getElementById('status').innerText = `Rolled a ${gameState.diceValue}!`;
+  
+  // Logic to move the piece (simplified)
+  movePiece(gameState.currentPlayer, gameState.diceValue);
+});
+
+function movePiece(playerIndex, steps) {
+  gameState.positions[playerIndex] += steps;
+  console.log(`Player ${playerIndex} moved to ${gameState.positions[playerIndex]}`);
+  
+  // Check for win or change turn
+  if (gameState.diceValue !== 6) {
+    gameState.currentPlayer = (gameState.currentPlayer + 1) % 4;
+  }
+}
+
+
+<div id="ludo-board">
+  <!-- Zones for Red, Green, Yellow, Blue -->
+  <div class="home red"></div>
+  <div class="home green"></div>
+  <div class="path"></div>
+  <!-- ... more sections ... -->
+</div>
+<button id="dice-btn">Roll Dice</button>
+<p id="status">Player 1's Turn</p>
