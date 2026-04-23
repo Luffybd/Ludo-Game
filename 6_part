@@ -1,0 +1,44 @@
+<div id="game-info">
+    <p>Turn: <span id="current-player">red</span></p>
+    <button onclick="rollDice()">Roll Dice</button>
+    <p>Dice: <span id="dice-display">0</span></p>
+</div>
+
+<div id="controls">
+    <button onclick="moveToken(turn, 0)">Move Token 1</button>
+    <button onclick="moveToken(turn, 1)">Move Token 2</button>
+</div>
+const players = ['red', 'green', 'yellow', 'blue'];
+let turn = 0;
+let diceValue = 0;
+
+const state = {
+    red: [0, 0, 0, 0],
+    green: [0, 0, 0, 0],
+    yellow: [0, 0, 0, 0],
+    blue: [0, 0, 0, 0]
+};
+
+function rollDice() {
+    diceValue = Math.floor(Math.random() * 6) + 1;
+    document.getElementById('dice-display').innerText = diceValue;
+    return diceValue;
+}
+
+function moveToken(playerIndex, tokenIndex) {
+    const playerColor = players[playerIndex];
+    if (state[playerColor][tokenIndex] === 0 && diceValue !== 6) return;
+    
+    state[playerColor][tokenIndex] += diceValue;
+    updateUI();
+    nextTurn();
+}
+
+function nextTurn() {
+    turn = (turn + 1) % 4;
+    document.getElementById('current-player').innerText = players[turn];
+}
+
+function updateUI() {
+    console.log("State updated:", state);
+}
