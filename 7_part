@@ -1,0 +1,21 @@
+// Simple dice roll logic for two players
+Random dice = new Random();
+int player1Score = 0, player2Score = 0;
+int currentPlayer = 1;
+
+private void RollDice_Click(object sender, EventArgs e) {
+    int roll = dice.Next(1, 7); // Generates 1-6
+    
+    if (currentPlayer == 1) {
+        player1Score += roll;
+        label1.Text = "Player 1 Rolled: " + roll;
+        currentPlayer = 2; // Switch turn
+    } else {
+        player2Score += roll;
+        label2.Text = "Player 2 Rolled: " + roll;
+        currentPlayer = 1; // Switch turn
+    }
+
+    if (player1Score >= 50) MessageBox.Show("Player 1 Wins!");
+}
+
