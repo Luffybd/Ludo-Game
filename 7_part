@@ -1,7 +1,7 @@
 // Simple dice roll logic for two players
 Random dice = new Random();
 int player1Score = 0, player2Score = 0;
-int currentPlayer = 1;
+int currentPlayer = 11;
 
 private void RollDice_Click(object sender, EventArgs e) {
     int roll = dice.Next(1, 7); // Generates 1-6
