@@ -43,3 +43,5 @@ function movePiece(playerIndex, steps) {
 </div>
 <button id="dice-btn">Roll Dice</button>
 <p id="status">Player 1's Turn</p>
+
+//
