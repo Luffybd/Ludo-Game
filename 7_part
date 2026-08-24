@@ -19,4 +19,4 @@ private void RollDice_Click(object sender, EventArgs e) {
     if (player1Score >= 50) MessageBox.Show("Player 1 Wins!");
 }
 
-ami na tumi ki kro ami tw jani ns tui ki krto xs
+ami na tumi ki kro ami tw jani ns tui ki krto xsxd
